@@ -165,7 +165,7 @@ sigV4ClientFactory.newClient = function(config) {
     }
     // headerを入れて署名計算をすると正常に動作しないため、headerは後で追加して計算時は空白にする
     const headers = {};
-    const bkHeaders = apiGateway.core.utils.copy(request.headers);
+    const bkHeaders = utils.copy(request.headers);
 
     // If the user has not specified an override for Content type the use default
     if (headers['Content-Type'] === undefined) {
@@ -228,7 +228,7 @@ sigV4ClientFactory.newClient = function(config) {
     }
 
     if (bkHeaders){
-        for (var key in bkHeaders){
+        for (let key in bkHeaders){
           // console.log('key = ' + key);
           if ( bkHeaders.hasOwnProperty(key)){
               headers[key] = bkHeaders[key];
